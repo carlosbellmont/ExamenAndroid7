@@ -1,23 +1,22 @@
 package com.example.esqueletoejercicioapi
 
-import android.view.Display
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AdapterString : RecyclerView.Adapter<AdapterString.FilmsViewHolder>()  {
+class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
 
-    private var datos : String? = null
+    private var datos : List<String>? = null
 
-    class FilmsViewHolder(root: View) : RecyclerView.ViewHolder(root)
+    class StringViewHolder(root: View) : RecyclerView.ViewHolder(root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StringViewHolder {
         TODO("Not yet implemented")
     }
 
-    override fun onBindViewHolder(holder: FilmsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: StringViewHolder, position: Int) {
         TODO("Not yet implemented")
     }
 
@@ -25,7 +24,7 @@ class AdapterString : RecyclerView.Adapter<AdapterString.FilmsViewHolder>()  {
         TODO("Not yet implemented")
     }
 
-    suspend fun setData(string : String){
+    suspend fun setData(string : List<String>){
         datos = string
         withContext(Dispatchers.Main){
             notifyDataSetChanged()

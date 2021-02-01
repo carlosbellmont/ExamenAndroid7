@@ -3,11 +3,10 @@ package com.example.esqueletoejercicioapi
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.esqueletoejercicioapi.databinding.ActivityDetailsBinding
-import com.example.esqueletoejercicioapi.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,10 +27,12 @@ class DetailsActivity : AppCompatActivity() {
         model = ViewModelProvider(this).get(DetailsActivityViewModel::class.java)
 
         binding.bBuscar.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             GlobalScope.launch (Dispatchers.IO) {
                 val resultado = model.getSingleItem(binding.etDetails.text.toString())
                 withContext(Dispatchers.Main){
                     binding.tvResultados.text = resultado
+                    binding.progressBar.visibility = View.GONE
                 }
             }
         }

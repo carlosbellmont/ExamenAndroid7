@@ -1,8 +1,8 @@
 package com.example.esqueletoejercicioapi
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.esqueletoejercicioapi.databinding.ActivityMainBinding
@@ -30,12 +30,17 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             val resultados = model.getApiResults()
             adapter.setData(resultados)
+            hideProgressBar()
         }
 
         binding.bSiguiente.setOnClickListener {
             DetailsActivity.createDetailsActivity(this)
         }
 
+    }
+
+    private suspend fun hideProgressBar() = withContext(Dispatchers.Main) {
+        binding.progressBar2.visibility = View.GONE
     }
 
     private fun createRecyclerView() {

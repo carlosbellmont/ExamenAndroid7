@@ -25,13 +25,16 @@ class MainActivity : AppCompatActivity() {
 
         model = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
+        createRecyclerView()
+
         GlobalScope.launch(Dispatchers.IO) {
             val resultados = model.getApiResults()
             adapter.setData(resultados)
         }
 
-
-        // PONER EL ADAPTER AL RECYCLER VIEW
+        binding.bSiguiente.setOnClickListener {
+            DetailsActivity.createDetailsActivity(this)
+        }
 
     }
 

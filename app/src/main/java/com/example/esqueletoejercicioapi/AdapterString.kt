@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
 
-    private var datos : List<String>? = null
+    private var datos = listOf<String>()
 
     class StringViewHolder(root: View, val textView: TextView) : RecyclerView.ViewHolder(root)
 
@@ -21,16 +21,11 @@ class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
     }
 
     override fun onBindViewHolder(holder: StringViewHolder, position: Int) {
-        datos?.let {
-            holder.textView.text = it[position]
-        }
+        holder.textView.text = datos[position]
     }
 
     override fun getItemCount(): Int {
-        datos?.let {
-            return it.size
-        }
-        return 0
+        return datos.size
     }
 
     suspend fun setData(string : List<String>){
